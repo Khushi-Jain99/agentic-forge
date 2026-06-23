@@ -1,6 +1,48 @@
+# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
 .env
 *.db
 *.sqlite
 venv/
 .venv/
+
+# Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.eslintcache
+.vite-cache/
+
+# Local envs
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs and OS
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Render / Logs
+*.log
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Vite
+frontend/.vite/
+
+# Build artifacts
+build/

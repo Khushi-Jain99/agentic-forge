@@ -1,0 +1,32 @@
+services:
+  # Backend FastAPI service
+  - type: web
+    name: agentic-ai-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.11
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # Frontend Static Site
+  - type: web
+    name: agentic-ai-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    publishPath: frontend/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://agentic-ai-backend.onrender.com/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
